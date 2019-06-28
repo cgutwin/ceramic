@@ -25,5 +25,6 @@ module.exports = {
       cache: true,
       template: path.resolve('src/client', 'index.html'),
     })
-  ]
+  ],
+  stats: 'errors-warnings'
 }

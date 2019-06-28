@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.1",
     "core-js": "^3.1.4",
+    "express": "^4.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -10,11 +13,13 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.4",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
+    "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^5.0.0",
     "eslint-config-standard": "^12.0.0",
@@ -40,9 +45,11 @@
   "license": "MIT",
   "name": "ceramic",
   "scripts": {
-    "react/build": "cross-env NODE_ENV=production webpack",
-    "react/start": "webpack-dev-server",
+    "build/react": "cross-env NODE_ENV=production webpack",
+    "start": "concurrently --prefix \"{time} [{name}]\" -n REACT,HTTP -c bgBlue.white.bold,bgGreen.white.bold \"yarn:start/react\" \"yarn:start/server\"",
+    "start/react": "webpack-dev-server",
+    "start/server": "nodemon -w src/server -r @babel/register -r dotenv/config src/server/start.js",
     "test": "jest"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

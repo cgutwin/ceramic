@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   devServer: {
+    clientLogLevel: 'warn',
     contentBase: path.resolve('dist/dev/client'),
     compress: true,
     hot: true,
